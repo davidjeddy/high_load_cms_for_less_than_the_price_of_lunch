@@ -1,0 +1,6 @@
+*.plan
+*.lock.*
+*.pem
+*.backup
+*.tfstate
+*terraform/
