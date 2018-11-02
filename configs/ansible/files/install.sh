@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # create swap
 # Source: https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-18-04
 fallocate -l 1G /swapfile

@@ -3,7 +3,8 @@
   become: true
 
   pre_tasks:
-    - raw: apt-get -y update && apt-get install -y python-minimal
+    - name: Install python for Ansible
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
 
   tasks:
     - name: Install basic packages
@@ -26,8 +27,12 @@
     - name: Copy install script to remote
       copy:
         src: install.sh
-        dest: install.sh
-        mode: 0644
+        dest: /root/install.sh
+        mode: "u=rwx"
+
+    - name: Execute install script
+      become_user: root
+      command: /root/install.sh
 
     # - copy:
     #   name: Copy Nginx configuration
