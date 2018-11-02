@@ -1,12 +1,38 @@
 - hosts: all
 
-  gather_facts: false
   become: true
 
   pre_tasks:
     - raw: apt-get -y update && apt-get install -y python-minimal
 
   tasks:
-    - copy:
-        src: ./install.sh
-        dest: ~/install.sh
+    - name: Install basic packages
+      action: >
+        {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
+      with_items:
+        - nginx
+        - mysql-server
+        - php-fpm
+        - php-curl
+        - php-gd
+        - php-intl
+        - php-mbstring
+        - php-soap
+        - php-xml
+        - php-xmlrpc
+        - php-zip
+        - php-mysql
+
+    - name: Copy install script to remote
+      copy:
+        src: install.sh
+        dest: install.sh
+        mode: 0644
+
+    # - copy:
+    #   name: Copy Nginx configuration
+    #   src: ./default.conf
+    #   dest: ~/default.conf
+
+    # - name: Run install script on remote
+    #   command: ~/install.sh

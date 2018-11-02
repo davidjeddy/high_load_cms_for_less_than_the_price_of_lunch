@@ -11,10 +11,7 @@ sysctl vm.swappiness=10
 cd /etc/sysctl.conf /etc/sysctl.conf.bckp
 echo 'vm.swappiness=10' >> /etc/sysctl.conf
 
-# install LEMP stack installed?
-apt-get update -y
-apt-get install -y nginx mysql-server php-fpm php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlrpc php-zip php-mysql
-
+# set servers to restart with machine
 systemctl restart php7.2-fpm
 systemctl reload nginx
 systemctl reload mysql
