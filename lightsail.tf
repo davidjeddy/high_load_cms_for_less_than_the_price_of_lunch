@@ -14,10 +14,9 @@ resource "aws_lightsail_instance" "high_load_cms_example" {
   key_pair_name ="high_load_cms"
 
   # This is where we configure the instance with ansible-playbook
-  provisioner "local-exec" {
-    // command = "sleep 60;  ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu --private-key ./ssh_key.pem -i '${self.public_ip_address},' ./configs/ansible/master.yml"
-    command = "sleep 60; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i '${self.public_ip_address}', -u ubuntu --private-key ./high_load_cms.pem ./configs/ansible/master.yml -vvv"
-  }
+   provisioner "local-exec" {
+       command = "sleep 60;  ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i '${self.public_ip_address}', -u ubuntu --private-key ./high_load_cms.pem ./configs/ansible/master.yml -vvv"
+   }
 
   connection {
     type        = "ssh"
