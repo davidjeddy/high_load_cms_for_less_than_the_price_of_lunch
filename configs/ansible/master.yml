@@ -1,15 +1,12 @@
 - hosts: all
+
+  gather_facts: false
   become: true
 
-  # tasks:
-  #   - name: ensure the jenkins apt repository key is installed
-  #     apt_key: url=https://pkg.jenkins.io/debian-stable/jenkins.io.key state=present
+  pre_tasks:
+    - raw: apt-get -y update && apt-get install -y python-minimal
 
-  #   - name: ensure the repository is configured
-  #     apt_repository: repo='deb https://pkg.jenkins.io/debian-stable binary/' state=present
-
-  #   - name: ensure jenkins is installed
-  #     apt: name=jenkins update_cache=yes
-
-  #   - name: ensure jenkins is running
-  #     service: name=jenkins state=started
+  tasks:
+    - copy:
+        src: ./install.sh
+        dest: ~/install.sh
