@@ -1,0 +1,41 @@
+- hosts: all
+
+  become: true
+  gather_facts: False
+
+  pre_tasks:
+    - name: Install python for Ansible
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+
+  tasks:
+    - name: Update apt-get
+      become_user: root
+      command: "apt-get update -y"
+    
+    - name: Install basic packages
+      become_user: root
+      command: "apt-get install -y nginx mysql-server php-fpm php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlrpc php-zip php-mysql"
+
+    - name: Copy Nginx config to remote
+      copy:
+        become_user: root
+        src: default.conf
+        dest: /etc/nginx/sites-available/default
+        backup: true
+
+    - name: Copy SQL dump script to remote
+      copy:
+        become_user: root
+        src: dump.sql
+        dest: /root/dump.sql
+        backup: true
+      
+    - name: Copy install script to remote
+      copy:
+        src: install.sh
+        dest: /root/install.sh
+        mode: "u=rwx"
+
+    - name: Execute install script
+      become_user: root
+      command: /root/install.sh
