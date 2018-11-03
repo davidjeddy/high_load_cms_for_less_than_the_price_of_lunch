@@ -14,21 +14,19 @@
     
     - name: Install basic packages
       become_user: root
-      command: "apt-get install -y nginx mysql-server php-fpm php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlrpc php-zip php-mysql"
+      command: "apt-get install -y nginx mysql-server php-fpm php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlrpc php-zip php-mysql htop"
 
     - name: Copy Nginx config to remote
       copy:
-        become_user: root
         src: default.conf
         dest: /etc/nginx/sites-available/default
         backup: true
 
     - name: Copy SQL dump script to remote
       copy:
-        become_user: root
         src: dump.sql
         dest: /root/dump.sql
-        backup: true
+        mode: "u=rwx"
       
     - name: Copy install script to remote
       copy:

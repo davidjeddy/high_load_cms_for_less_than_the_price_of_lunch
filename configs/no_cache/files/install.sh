@@ -24,14 +24,24 @@ echo 'Install Wordpress files'
 curl -LO https://wordpress.org/latest.tar.gz
 tar xzvf latest.tar.gz
 cp ./wordpress/wp-config-sample.php ./wordpress/wp-config.php
-mv /var/www/html /var/www/html_bckp
+mv /var/www/html /var/www/html__$(date +%F-%T)
 cp -a ./wordpress/ /var/www/html
-chown -R www-data:www-data /var/www/html
-chown -R 0644 /var/www/html
-chmod -R www-data:www-data /var/www/html
 
-#setup MySQL database user
-sudo mysql -uroot -proot -hlocahost -e "CREATE DATABASE database_name_here;  GRANT ALL PRIVILEGES ON *.* TO 'username_here'@'localhost' IDENTIFIED BY 'password_here'; FLUSH PRIVILAGES;"
+# Change www properties
+chmod -R 0755 /var/www/html
+chown -R www-data:www-data /var/www/html
+
+# Place current IP in dump.SQL
+CURRENT_IP="$(curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//')"
+sed -i "s/CURRENT_IP/$CURRENT_IP/g" /root/dump.sql
+
+# setup MySQL database user
+sudo mysql -uroot -proot -hlocalhost -e "DROP DATABASE IF EXISTS database_name_here; CREATE DATABASE database_name_here;  GRANT ALL PRIVILEGES ON *.* TO 'username_here'@'localhost' IDENTIFIED BY '2!3swZ$NVO(wcigcw('; FLUSH PRIVILEGES;"
 
 # import SQL DB
 mysql -uroot -proot database_name_here < /root/dump.sql
+
+# reload / restart services
+service php-fpm restart
+service mysql restart
+service nginx restart
