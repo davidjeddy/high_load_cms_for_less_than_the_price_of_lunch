@@ -43,7 +43,7 @@
       
     - name: Copy install script to remote
       copy:
-        src: install.sh
+        src: ../shared/install.sh
         dest: /root/install.sh
         mode: "u=rwx"
 

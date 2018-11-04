@@ -5,3 +5,4 @@
 *.tfstate
 *.retry
 *terraform/
+/testing/load/gatling/results/
