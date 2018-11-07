@@ -31,11 +31,12 @@ cd /path/to/root/of/this/project
 
 Exp:
 
-    JAVA_OPTS="-Dtarget=34.237.0.147" \
+    JAVA_OPTS="-Dtarget=18.206.149.7" \
     gatling.sh \
     -sf ./testing/load/gatling \
-    -rf ./testing/load/gatling/results/nginx_cache/ \
+    -rf ./testing/load/gatling/results/ \
     -s HighLoadCMS
+    -rd 'no cache'
 
 ### Tear down
 
@@ -45,3 +46,6 @@ Exp:
 wordpress cache plugin used is [WP Fastest Cache](https://wordpress.org/plugins/wp-fastest-cache/) with the following settings.
 
 [IMG HERE]
+
+## Report Reading
+[Gatling.io](https://gatling.io/docs/current/general/reports/) has an explainatin of how to interprest the results output.

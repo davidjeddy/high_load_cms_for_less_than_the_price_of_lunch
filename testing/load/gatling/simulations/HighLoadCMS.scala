@@ -44,7 +44,7 @@ class HighLoadCMS extends Simulation {
 
 	setUp(
 		scn.inject(
-			constantConcurrentUsers(500) during (30 seconds),
+    		rampConcurrentUsers(0) to (500) during (60 seconds)
 		).protocols(httpProtocol)
 	)
 }
