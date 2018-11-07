@@ -21,12 +21,7 @@ sudo mysql -uroot -proot -hlocalhost -e "DROP DATABASE IF EXISTS database_name_h
 # import SQL DB
 mysql -uroot -proot database_name_here < /root/dump.sql
 
-echo 'Configure LEMP to restart is machine does'
-systemctl restart php7.2-fpm
-systemctl reload nginx
-systemctl reload mysql
-
-# reload / restart services
+# restart services to take new configurations
 service php-fpm restart
 service mysql restart
 service nginx restart

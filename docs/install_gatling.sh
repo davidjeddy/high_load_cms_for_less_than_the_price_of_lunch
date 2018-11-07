@@ -14,8 +14,8 @@ echo 'GATLING_HOME="/root/gatling-charts-highcharts-bundle-3.0.0/bin"' >> /etc/e
 
 tail /etc/environment
 
-export PATH=$PATH:/root/gatling-charts-highcharts-bundle-3.0.0/bin
+export PATH=$PATH:/root/gatling-charts-highcharts-bundle-3.0.0
 
 git clone https://github.com/davidjeddy/high_load_cms_for_less_than_the_price_of_lunch
 cd high_load_cms_for_less_than_the_price_of_lunch
-git checkout load_runs_compiled_together
+git branch -a
