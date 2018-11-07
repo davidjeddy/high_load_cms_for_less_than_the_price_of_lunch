@@ -31,12 +31,7 @@ cd /path/to/root/of/this/project
 
 Exp:
 
-    JAVA_OPTS="-Dtarget=18.206.149.7" \
-    gatling.sh \
-    -sf ./testing/load/gatling \
-    -rf ./testing/load/gatling/results/ \
-    -s HighLoadCMS
-    -rd 'no cache'
+     JAVA_OPTS="-Dtarget=34.205.4.205" ./gatling.sh -sf ./testing/load/gatling -rf /testing/load/gatling/results/no_cache -s HighLoadCMS -rd 'no cache'
 
 ### Tear down
 
