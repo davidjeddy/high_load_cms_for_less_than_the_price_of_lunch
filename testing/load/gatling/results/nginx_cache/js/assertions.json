@@ -1,0 +1,10 @@
+{
+  "simulation": "HighLoadCMS",
+  "simulationId": "highloadcms",
+  "start": 1541565711482,
+  "description": "nginx cache",
+  "scenarios": ["HighLoadCMS"],
+  "assertions": [
+
+  ]
+}
