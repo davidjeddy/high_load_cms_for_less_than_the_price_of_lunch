@@ -1,0 +1,8 @@
+*.plan
+*.lock.*
+*.pem
+*.backup
+*.tfstate
+*.retry
+*terraform/
+/testing/load/gatling/results/
