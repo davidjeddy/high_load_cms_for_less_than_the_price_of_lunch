@@ -1,0 +1,10 @@
+{
+  "simulation": "HighLoadCMS",
+  "simulationId": "highloadcms",
+  "start": 1541564994375,
+  "description": "no cache",
+  "scenarios": ["HighLoadCMS"],
+  "assertions": [
+
+  ]
+}
