@@ -1,0 +1,10 @@
+{
+  "simulation": "HighLoadCMS",
+  "simulationId": "highloadcms",
+  "start": 1541565386735,
+  "description": "wordpress cache",
+  "scenarios": ["HighLoadCMS"],
+  "assertions": [
+
+  ]
+}
